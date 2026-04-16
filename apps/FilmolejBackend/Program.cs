@@ -1,12 +1,20 @@
+using FilmolejBackend.Data;
 using FilmolejBackend.Services.Interfaces;
+using FilmolejBackend.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configuring DbContext with PostgreSQL connection
+builder.Services.AddDbContext<FilmolejDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
 // Adding dependencies
-builder.Services.AddScoped<IUploadService, IUploadService>();
+builder.Services.AddScoped<IUserRegistryService, UserRegistryService>();
+builder.Services.AddScoped<IUploadService, UploadService>();
 
 var app = builder.Build();
 
