@@ -1,6 +1,6 @@
 ﻿namespace FilmolejBackend.Models
 {
-    public class UsersMovies
+    public class UsersMoviesModel
     {
         public int UserId { get; set; }
         public int MovieId { get; set; }
