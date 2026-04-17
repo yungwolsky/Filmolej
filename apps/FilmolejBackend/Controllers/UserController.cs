@@ -2,7 +2,9 @@
 using FilmolejBackend.Requests;
 using FilmolejBackend.Models;
 using Microsoft.AspNetCore.Http;
+using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace FilmolejBackend.Controllers
 {
@@ -30,6 +32,26 @@ namespace FilmolejBackend.Controllers
             var token = _tokenService.GenerateToken(newUser);
 
             return Ok(new { token, message = "User successfully registered" });
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginRequest request)
+        {
+            var user = await _userService.GetUserByEmailAsync(request.Email);
+
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Wrong e-mail or password!" });
+            }
+
+            if(!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+            {
+                return Unauthorized(new { message = "Wrong e-mail or password!" });
+            }
+
+            var token = _tokenService.GenerateToken(user);
+
+            return Ok(new { token, message = "User logged in" });
         }
     }
 }

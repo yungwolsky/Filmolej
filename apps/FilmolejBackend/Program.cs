@@ -37,7 +37,7 @@ builder.Services.AddAuthentication("Bearer")
 
             ValidIssuer = "FilmolejBackend",
             ValidAudience = "FilmolejFrontend",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
         };
     });
 builder.Services.AddAuthorization();

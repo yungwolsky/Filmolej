@@ -16,7 +16,7 @@ namespace FilmolejBackend.Services
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _users.FirstAsync(u => u.Email == email);
+            return await _users.SingleOrDefaultAsync(u => u.Email == email);
         }
         
         public async Task<User?> AddUserAsync(string username, string email

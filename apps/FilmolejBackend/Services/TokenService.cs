@@ -16,8 +16,8 @@ namespace FilmolejBackend.Services
         public TokenService(IConfiguration config) 
         {
             _config = config;
-            _secretKey = _config["ApiSettings:SecretKey"];
-            _accessTokenExpiryMinutes = _config.GetValue<int>("ApiSettings:AccessTokenExpiryMinutes", 60);
+            _secretKey = _config["Jwt:SecretKey"];
+            _accessTokenExpiryMinutes = _config.GetValue<int>("Jwt:AccessTokenExpiryMinutes", 60);
         }
 
         public string GenerateToken(User user)
@@ -33,8 +33,8 @@ namespace FilmolejBackend.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: _config["ApiSettings:Issuer"],
-                audience: _config["ApiSettings:Audience"],
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(_accessTokenExpiryMinutes),
                 signingCredentials: creds
