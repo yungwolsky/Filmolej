@@ -19,12 +19,12 @@ namespace FilmolejBackend.Services
             return await _users.FirstAsync(u => u.Email == email);
         }
         
-        public async Task<bool> AddUserAsync(string username, string email
+        public async Task<User?> AddUserAsync(string username, string email
             , string password)
         {
             if(await _users.AnyAsync(u => u.Email == email))
             {
-                return false;
+                return null;
             }
 
             User NewUser = new User
@@ -40,12 +40,12 @@ namespace FilmolejBackend.Services
                 await _db.SaveChangesAsync();
 
                 _logger.LogInformation("User created: {Email}", email);
-                return true;
+                return NewUser;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Couldn't create user in database");
-                return false;
+                return null;
             }
         }
     }

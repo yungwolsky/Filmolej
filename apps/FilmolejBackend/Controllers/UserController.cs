@@ -8,25 +8,28 @@ namespace FilmolejBackend.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UserController(IUserService userService) : ControllerBase
+    public class UserController(IUserService userService, ITokenService tokenService) : ControllerBase
     {
         private readonly IUserService _userService = userService;
+        private readonly ITokenService _tokenService = tokenService;
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegistrationRequest request)
         {
-            var result = await _userService.AddUserAsync(
+            var newUser = await _userService.AddUserAsync(
                 request.Username,
                 request.Email,
                 request.Password
             );
 
-            if (!result)
+            if (newUser == null)
             {
                 return StatusCode(500, new { message = "User registration failed" });
             }
 
-            return Ok(new { message = "User successfully registered" });
+            var token = _tokenService.GenerateToken(newUser);
+
+            return Ok(new { token, message = "User successfully registered" });
         }
     }
 }

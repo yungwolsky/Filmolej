@@ -5,6 +5,6 @@ namespace FilmolejBackend.Services.Interfaces
     public interface IUserService
     {
         Task<User?> GetUserByEmailAsync(string email);
-        Task<bool> AddUserAsync(string username, string email, string password);
+        Task<User?> AddUserAsync(string username, string email, string password);
     }
 }
