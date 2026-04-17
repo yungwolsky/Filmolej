@@ -1,22 +1,22 @@
- create table Users (
-    id int primary key,
-    username text not null,
-    email text not null,
-    password_hash text not null
-)
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password_hash TEXT NOT NULL
+);
 
-create table Movies (
-    id int primary key,
-    title text not null,
-    descritpion text not null,
-    file_path text not null,
-    poster_url text,
-    duration int 
-)
+CREATE TABLE movies (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    file_path TEXT NOT NULL,
+    poster_url TEXT,
+    duration INT
+);
 
-create table Users_Movies (
-    user_id int references users(id),
-    movie_id int references movies(id),
-    added_at datetime,
-    primary key (user_id, movie_id)
-)
+CREATE TABLE users_movies (
+    user_id INT REFERENCES users(id),
+    movie_id INT REFERENCES movies(id),
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, movie_id)
+);
