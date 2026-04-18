@@ -15,12 +15,26 @@ services:
     env_file:
         - ../.env
 
+  frontend:
+    build:
+        context: ../apps/FilmolejFrontend
+        dockerfile: ../../infrastructure/docker/FilmolejFrontend.Dockerfile
+    ports:
+        - "3000:5173"
+    volumes:
+        - ../apps/FilmolejFrontend:/app
+        - /app/node_modules
+    environment:
+        - CHOKIDAR_USEPOLLING=true
+    depends_on:
+        - backend
+
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: media
-      POSTGRES_PASSWORD: media
-      POSTGRES_DB: mediaserver
+        POSTGRES_USER: media
+        POSTGRES_PASSWORD: media
+        POSTGRES_DB: mediaserver
     volumes:
         - postgres_data:/var/lib/postgresql/data
         - ../database/init.sql:/docker-entrypoint-initdb.d/init.sql

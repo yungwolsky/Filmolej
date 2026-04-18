@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.Data;
 
 namespace FilmolejBackend.Controllers
 {
-    [Route("api/users")]
+    [Route("api/user")]
     [ApiController]
     public class UserController(IUserService userService, ITokenService tokenService) : ControllerBase
     {
