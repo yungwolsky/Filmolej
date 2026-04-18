@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { login } from "../api/auth";
+import { Link } from "react-router-dom";
 
 function Login(){
     const [email, setEmail] = useState("");
@@ -45,8 +46,8 @@ function Login(){
                 <br />
 
                 <button type="submit">Log In</button>
+                <Link to="/register">Doesn't have an account?</Link>
             </form>
-            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );
 }

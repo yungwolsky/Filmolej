@@ -1,5 +1,6 @@
 import { use, useState } from "react";
 import { register } from "../api/auth";
+import { Link } from "react-router-dom";
 
 function Register(){
     const [username, setUsername] = useState("");
@@ -10,15 +11,19 @@ function Register(){
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        try{
-            const data = await register(username, email, password);
+        try {
+            const response = await register(username, email, password);
+
+            const data = response.data; 
 
             localStorage.setItem("token", data.token);
 
-            console.log("User created:", data);
+            setError("");
             alert("User created!");
         } catch (err) {
-            setError("User with this email already exists");
+            console.log(err.response?.data);
+
+            setError(err.response?.data?.message || "Registration failed");
         }
     };
 
@@ -54,9 +59,9 @@ function Register(){
 
                 <br />
 
-                <button type="submit">Register</button>
+                <button type="submit">Register</button>              
+                <Link to="/login">Already have an account?</Link>
             </form>
-            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     )
 }
