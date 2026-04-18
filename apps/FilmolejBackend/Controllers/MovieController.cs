@@ -35,5 +35,22 @@ namespace FilmolejBackend.Controllers
 
             return Ok(new { message = "Movie uploaded" });
         }
+
+        [Authorize]
+        [HttpGet("users_movies")]
+        public async Task<IActionResult> GetUsersMovies()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim);
+            var movies = await _movieService.GetMoviesByUserId(userId);
+
+            return Ok(new { items = movies });
+        }
     }
 }

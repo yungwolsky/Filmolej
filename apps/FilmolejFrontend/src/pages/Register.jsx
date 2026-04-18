@@ -12,9 +12,7 @@ function Register(){
         e.preventDefault();
 
         try {
-            const response = await register(username, email, password);
-
-            const data = response.data; 
+            const data = await register(username, email, password);
 
             localStorage.setItem("token", data.token);
 
