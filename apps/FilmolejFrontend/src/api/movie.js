@@ -10,3 +10,8 @@ export const upload = async (title, file) => {
 
     return res.data;
 }
+
+export const getMovieCollection = async () => {
+    const res = await apiClient.get("/movie/users_movies");
+    return res.data;
+}

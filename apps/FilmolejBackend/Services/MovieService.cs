@@ -94,5 +94,10 @@ namespace FilmolejBackend.Services
             return await _movies.Where(m => m.UserId == userId)
                 .ToListAsync();
         }
+
+        public async Task<Movie?> GetMovieById(int movieId)
+        {
+            return await _movies.FirstAsync(m => m.Id == movieId);
+        }
     }
 }

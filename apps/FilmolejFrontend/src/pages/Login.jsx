@@ -19,7 +19,7 @@ function Login(){
 
             console.log("Logged in:", data);
             alert("Login success!");
-            navigate("/upload");
+            navigate("/movieCollection");
         } catch (err) {
             console.log(err);
             
