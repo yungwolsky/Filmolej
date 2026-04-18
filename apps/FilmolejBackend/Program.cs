@@ -21,7 +21,7 @@ builder.Services.AddRazorPages();
 
 // Adding dependencies
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUploadService, UploadService>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // JWT Token

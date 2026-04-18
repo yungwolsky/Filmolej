@@ -2,7 +2,7 @@
 
 namespace FilmolejBackend.Services
 {
-    public class UploadService : IUploadService
+    public class FileService : IFileService
     {
         public Task<string> UploadAsync()
         {

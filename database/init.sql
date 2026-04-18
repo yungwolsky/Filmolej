@@ -8,15 +8,14 @@ CREATE TABLE users (
 CREATE TABLE movies (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    description TEXT NOT NULL,
-    file_path TEXT NOT NULL,
-    poster_url TEXT,
-    duration INT
-);
+    description TEXT,
+    director TEXT,
+    release_date TIMESTAMP,
+    genre TEXT,
 
-CREATE TABLE users_movies (
-    user_id INT REFERENCES users(id),
-    movie_id INT REFERENCES movies(id),
-    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (user_id, movie_id)
+    original_file_path TEXT,
+    stream_path TEXT,
+
+    status TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
 );

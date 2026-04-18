@@ -1,6 +1,9 @@
-FROM jrottenberg/ffmpeg:6.0-ubuntu
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y ffmpeg
 
 WORKDIR /app
-COPY ./services/transcoder .
 
-CMD ["bash"]
+COPY . .
+
+CMD ["dotnet", "TranscoderWorker.dll"]

@@ -1,6 +1,6 @@
 ﻿namespace FilmolejBackend.Services.Interfaces
 {
-    public interface IUploadService
+    public interface IFileService
     {
         Task<string> UploadAsync();
     }
