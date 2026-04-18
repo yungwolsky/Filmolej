@@ -1,20 +1,20 @@
-import axios from "axios";
-
-const API = "http://192.168.0.7:5000/api/user";
+import apiClient from "./client";
 
 export const login = async (email, password) => {
-    const res = await axios.post(`${API}/login`, {
+    const res = await apiClient.post(`/user/login`, {
         email,
-        passowrd
+        password
     });
 
     return res.data;
 }
 
 export const register = async (username, email, password) => {
-    const res = await axios.post(`${API}/register`, {
+    const res = await apiClient.post(`/user/register`, {
         username,
         email,
         password
     });
+
+    return res.data;
 }

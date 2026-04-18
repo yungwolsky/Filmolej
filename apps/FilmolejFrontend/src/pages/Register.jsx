@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { register } from "../api/auth";
 import { Link } from "react-router-dom";
 
@@ -21,15 +21,19 @@ function Register(){
             setError("");
             alert("User created!");
         } catch (err) {
-            console.log(err.response?.data);
+            const message =
+                err.response?.data?.message ||
+                err.response?.data ||
+                "Registration failed";
 
-            setError(err.response?.data?.message || "Registration failed");
+            setError(message);
         }
-    };
+    }
 
     return (
         <div>
             <h2>Register</h2>
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <form onSubmit={handleRegister}>
                 <input 

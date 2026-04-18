@@ -10,8 +10,7 @@ services:
     depends_on:
         - db
     volumes:
-        - ../storage/media:/media
-        - ../storage/streams:/streams
+        - ../storage:/storage
     env_file:
         - ../.env
 

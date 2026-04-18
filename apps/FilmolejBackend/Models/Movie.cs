@@ -1,11 +1,11 @@
 ﻿namespace FilmolejBackend.Models
 {
-    public enum MovieStatus
+    public static class MovieStatus
     {
-        Uploaded, // file received
-        Processing, // FFmpged running
-        Ready, // available for streaming
-        Failed // transcoding error
+        public const string Pending = "pending";
+        public const string Processing = "processing";
+        public const string Ready = "ready";
+        public const string Failed = "failed";
     }
 
     public class Movie
@@ -14,18 +14,19 @@
 
         // Movie info
         public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string Plot { get; set; } = string.Empty;
         public string Director { get; set; } = string.Empty;
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
         public string Genre { get; set; } = string.Empty;
         public string? PosterUrl { get; set; }
+        public int UserId { get; set; }
 
         // File info
         public string OriginalFilePath { get; set; } = string.Empty;
         public string StreamPath { get; set; } = string.Empty;
 
         // Processing state
-        public MovieStatus Status { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }   
