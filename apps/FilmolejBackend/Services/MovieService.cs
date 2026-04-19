@@ -28,7 +28,7 @@ namespace FilmolejBackend.Services
         private readonly ILogger<IMovieService> _logger = logger;
         private readonly string _apiKey = config["Omdb:ApiKey"];
         private readonly HttpClient _client = client;
-        public async Task<bool> UploadFileAsync(int userId, string title, IFormFile file)
+        public async Task<bool> SaveMetadataAsync(int userId, string title, string file)
         {
             var url = $"http://www.omdbapi.com/?apikey={_apiKey}&t={Uri.EscapeDataString(title)}";
             HttpResponseMessage response = await _client.GetAsync(url);
@@ -53,16 +53,6 @@ namespace FilmolejBackend.Services
                 return false;
             }
 
-            var rawPath = "/storage/raw";
-            Directory.CreateDirectory(rawPath);
-
-            var filePath = Path.Combine(rawPath, $"{Guid.NewGuid()}_{file.FileName}");
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
             var movie = new Movie
             {
                 Title = movieData.Title,
@@ -72,7 +62,7 @@ namespace FilmolejBackend.Services
                 Genre = movieData.Genre,
                 PosterUrl = movieData.Poster,
                 UserId = userId,
-                OriginalFilePath = filePath,
+                OriginalFilePath = file,
                 Status = MovieStatus.Processing
             };
 
@@ -80,6 +70,7 @@ namespace FilmolejBackend.Services
             {
                 await _movies.AddAsync(movie);
                 await _db.SaveChangesAsync();
+
                 return true;
             }
             catch (Exception ex)

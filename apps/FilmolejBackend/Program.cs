@@ -1,8 +1,9 @@
 using FilmolejBackend.Data;
-using FilmolejBackend.Services.Interfaces;
 using FilmolejBackend.Services;
-using Microsoft.EntityFrameworkCore;
+using FilmolejBackend.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -13,11 +14,25 @@ builder.Services.AddDbContext<FilmolejDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
         .UseSnakeCaseNamingConvention());
 
+// Upgrade the limit of sended files
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 2L * 1024 * 1024 * 1024; // 2GB
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 2L * 1024 * 1024 * 1024;
+});
+
 // Add controllers
 builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Adding worker
+builder.Services.AddHostedService<TranscodingWorker>();
 
 // Adding dependencies
 builder.Services.AddScoped<IUserService, UserService>();

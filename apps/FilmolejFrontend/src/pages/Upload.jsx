@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { upload } from "../api/movie";
+import { upload, uploadInChunks } from "../api/movie";
 
 function Upload(){
     const [title, setTitle] = useState("");
@@ -7,7 +7,7 @@ function Upload(){
 
     const handleUpload = async () => {
         try {
-            const res = await upload(title, file);
+            const res = await uploadInChunks(title, file);
             console.log("Uploaded:", res);
         } catch (err) {
             console.error(err);
