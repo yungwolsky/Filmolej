@@ -33,12 +33,12 @@
 }
 
 .nav-links a:hover{
-    background-color: red;
-    border-color: red;
+    background-color: #905EAA;
+    border-color: #905EAA;
 }
 
 .nav-links a.active {
-    background-color: #e50914;
+    background-color: #905EAA;
 }
 
 .navbar h2 {
