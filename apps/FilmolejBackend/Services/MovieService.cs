@@ -61,6 +61,7 @@ namespace FilmolejBackend.Services
                 ReleaseDate = movieData.Year,
                 Genre = movieData.Genre,
                 PosterUrl = movieData.Poster,
+                Duration = movieData.Runtime,
                 UserId = userId,
                 OriginalFilePath = file,
                 Status = MovieStatus.Processing

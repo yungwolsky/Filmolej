@@ -6,7 +6,6 @@ function MoviePage() {
 
     return (
         <div>
-            <h1>Watch Movie</h1>
             <VideoPlayer movieId={id}/>
         </div>
     );

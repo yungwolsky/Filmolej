@@ -1,0 +1,58 @@
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.information {
+    background-color: #71756c;
+    border-radius: 12px;
+    height: fit-content;
+    padding: 20px;
+    width: 100%;
+}
+
+.movie-title {
+    grid-column: 1 / 2;
+    color: white;
+}
+
+.poster {
+    width: 75%;
+}
+
+.poster img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.plot {
+    color: white;
+    line-height: 1.5;
+}
+
+.information button {
+    width: 100px;
+    height: 40px;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #905EAA;
+    color: black;
+    cursor: pointer;
+    color: white;
+}
+
+.movie-info {
+    grid-column: 1 / 3;
+
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    color: white;
+    font-size: 14px;
+    margin-bottom: 20px;
+}

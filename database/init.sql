@@ -13,6 +13,7 @@ CREATE TABLE movies (
     release_date TEXT,
     genre TEXT,
     poster_url TEXT,
+    duration TEXT,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
 
     original_file_path TEXT,

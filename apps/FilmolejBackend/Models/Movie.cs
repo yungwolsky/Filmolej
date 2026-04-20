@@ -19,6 +19,7 @@
         public string ReleaseDate { get; set; }
         public string Genre { get; set; } = string.Empty;
         public string? PosterUrl { get; set; }
+        public string Duration { get; set; } = string.Empty;
         public int UserId { get; set; }
 
         // File info
