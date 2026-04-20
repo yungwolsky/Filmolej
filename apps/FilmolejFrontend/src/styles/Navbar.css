@@ -1,0 +1,46 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D9D9D9;
+
+    padding: 10px 30px;
+    width: 100%;
+    min-width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    
+    box-sizing: border-box;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: 0.2s;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.nav-links a:hover{
+    background-color: red;
+    border-color: red;
+}
+
+.nav-links a.active {
+    background-color: #e50914;
+}
+
+.navbar h2 {
+    color: black;
+}

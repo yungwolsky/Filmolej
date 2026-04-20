@@ -1,0 +1,27 @@
+body, html {
+    background-color: #42165A;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.page-center {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #42165A;
+}
+
+.page {
+    min-height: calc(100vh - 60px);
+
+    max-width: 1200px;
+    margin: 50px auto;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+}

@@ -25,7 +25,10 @@ function VideoPlayer({ movieId }) {
         };
     }, [movieId]);
 
-    return <video ref={VideoRef} controls width="800" />;
+    return <video 
+                ref={VideoRef} 
+                controls 
+                style={{ width: "100%", maxWidth: "900px" }} />;
 }
 
 export default VideoPlayer;

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import { Link } from "react-router-dom";
+import "../styles/Login.css";
+import "../styles/Global.css"
 
 function Login(){
     const [email, setEmail] = useState("");
@@ -18,7 +20,6 @@ function Login(){
             localStorage.setItem("token", data.token);
 
             console.log("Logged in:", data);
-            alert("Login success!");
             navigate("/movieCollection");
         } catch (err) {
             console.log(err);
@@ -33,32 +34,34 @@ function Login(){
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+        <div className="page-center">
+            <div className="loginBox">
+                <h2>Log In</h2>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                
+                <form onSubmit={handleLogin}>
+                    <input 
+                        type="email" 
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-            <form onSubmit={handleLogin}>
-                <input 
-                    type="email" 
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <br />
 
-                <br />
+                    <input 
+                        type="password" 
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                <input 
-                    type="password" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    <br />
 
-                <br />
-
-                <button type="submit">Log In</button>
-                <Link to="/register">Doesn't have an account?</Link>
-            </form>
+                    <Link className="link" to="/register">Doesn't have an account?</Link>
+                    <button className="button" type="submit">Log In</button>
+                </form>
+            </div>
         </div>
     );
 }

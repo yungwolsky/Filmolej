@@ -1,12 +1,13 @@
+import { useParams } from "react-router-dom";
 import VideoPlayer from "../components/Player";
 
 function MoviePage() {
-    const movieId = 1;
+    const { id } = useParams();
 
     return (
         <div>
             <h1>Watch Movie</h1>
-            <VideoPlayer movieId={movieId}/>
+            <VideoPlayer movieId={id}/>
         </div>
     );
 }

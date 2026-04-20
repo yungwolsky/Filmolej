@@ -3,18 +3,23 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Upload from "./pages/Upload";
 import GetMovieCollection from "./pages/MovieCollection";
-import MoviePage from "./pages/Movie";
+import MoviePlayer from "./pages/MoviePlayer";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/movieCollection" element={<GetMovieCollection />}></Route>
-        <Route path="/movie" element={<MoviePage />}></Route>
+        
+        <Route element={<Layout />}>
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/movieCollection" element={<GetMovieCollection />}></Route>
+          <Route path="/movie/:id" element={<MoviePlayer />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   ); 
