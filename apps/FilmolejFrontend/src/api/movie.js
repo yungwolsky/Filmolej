@@ -48,3 +48,7 @@ export const getMovieCollection = async () => {
     const res = await apiClient.get("/movie/users-movies");
     return res.data;
 }
+
+export const getMovie = async (movieId) => {
+    const res = await apiClient.get(`/movie/get-movie?movieId=${movieId}`)
+}
