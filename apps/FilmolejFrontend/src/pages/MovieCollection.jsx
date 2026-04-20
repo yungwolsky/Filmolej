@@ -22,7 +22,7 @@ function GetMovieCollection() {
     }, []);
 
     return (
-        <div>
+        <div className="page">
             <h2>Your Movies</h2>
 
             {movies.length === 0 ? (

@@ -51,4 +51,5 @@ export const getMovieCollection = async () => {
 
 export const getMovie = async (movieId) => {
     const res = await apiClient.get(`/movie/get-movie?movieId=${movieId}`)
+    return res.data;
 }

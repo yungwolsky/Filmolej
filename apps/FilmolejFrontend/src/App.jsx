@@ -5,6 +5,7 @@ import Upload from "./pages/Upload";
 import GetMovieCollection from "./pages/MovieCollection";
 import MoviePlayer from "./pages/MoviePlayer";
 import Layout from "./components/Layout";
+import GetMoviePage from "./pages/Movie";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         
         <Route element={<Layout />}>
           <Route path="/upload" element={<Upload />} />
+          <Route path="/movie/:id" element={<GetMoviePage />}></Route>
           <Route path="/movieCollection" element={<GetMovieCollection />}></Route>
-          <Route path="/movie/:id" element={<MoviePlayer />} />
+          <Route path="/moviePlayer/:id" element={<MoviePlayer />} />
         </Route>
       </Routes>
     </BrowserRouter>
