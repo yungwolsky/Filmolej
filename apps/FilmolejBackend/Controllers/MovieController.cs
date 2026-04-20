@@ -93,5 +93,23 @@ namespace FilmolejBackend.Controllers
 
             return Ok(new { items = movies });
         }
+
+        [Authorize]
+        [HttpGet("get-movie")]
+        public async Task<IActionResult> GetMovie([FromQuery] int movieId)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null)
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim);
+
+            var movie = await _movieService.GetMovieById(movieId);
+
+            return Ok(new { items = movie });
+        }
     }
 }
