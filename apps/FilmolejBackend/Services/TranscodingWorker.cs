@@ -27,7 +27,7 @@ namespace FilmolejBackend.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("🎬 Transcoding worker started");
+            _logger.LogInformation("Transcoding worker started");
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -38,7 +38,7 @@ namespace FilmolejBackend.Services
 
                     var movies = await db.Movies
                         .Where(m => m.Status == MovieStatus.Processing)
-                        .Take(2) // limit parallel load
+                        .Take(2) 
                         .ToListAsync(stoppingToken);
 
                     if (movies.Count == 0)
@@ -52,7 +52,7 @@ namespace FilmolejBackend.Services
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "❌ Error in transcoding worker");
+                    _logger.LogError(ex, "Error in transcoding worker");
                 }
 
                 await Task.Delay(2000, stoppingToken);
@@ -63,7 +63,7 @@ namespace FilmolejBackend.Services
         {
             try
             {
-                _logger.LogInformation("🎥 Transcoding movie {Id}", movie.Id);
+                _logger.LogInformation("Transcoding movie {Id}", movie.Id);
 
                 var inputPath = movie.OriginalFilePath;
 
@@ -122,7 +122,7 @@ namespace FilmolejBackend.Services
                 var output = await stdOutTask;
                 var error = await stdErrTask;
 
-                _logger.LogInformation("⏱️ Transcoding time: {Time}s", stopwatch.Elapsed.TotalSeconds);
+                _logger.LogInformation("Transcoding time: {Time}s", stopwatch.Elapsed.TotalSeconds);
                 _logger.LogInformation("FFmpeg output: {output}", output);
                 _logger.LogError("FFmpeg error: {error}", error);
 
@@ -131,20 +131,20 @@ namespace FilmolejBackend.Services
                     movie.Status = MovieStatus.Ready;
                     movie.StreamPath = outputPath;
 
-                    _logger.LogInformation("✅ Movie {Id} transcoded successfully", movie.Id);
+                    _logger.LogInformation("Movie {Id} transcoded successfully", movie.Id);
                 }
                 else
                 {
                     movie.Status = MovieStatus.Failed;
 
-                    _logger.LogError("❌ FFmpeg failed for movie {Id}", movie.Id);
+                    _logger.LogError("FFmpeg failed for movie {Id}", movie.Id);
                 }
 
                 await db.SaveChangesAsync(token);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "❌ Exception while transcoding movie {Id}", movie.Id);
+                _logger.LogError(ex, "Exception while transcoding movie {Id}", movie.Id);
 
                 movie.Status = MovieStatus.Failed;
                 await db.SaveChangesAsync(token);
