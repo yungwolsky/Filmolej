@@ -31,9 +31,11 @@ function Upload(){
                     onChange={(e) => setFile(e.target.files[0])}
                 />
 
-                <button className="button" onClick={handleUpload}>
-                    Upload
-                </button>
+                <div className="button-container">
+                    <button className="button" onClick={handleUpload}>
+                        Upload
+                    </button>
+                </div>
             </div>
         </div>
     )

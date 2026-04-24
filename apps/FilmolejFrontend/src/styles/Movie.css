@@ -1,16 +1,16 @@
 .movie-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
 }
 
 .information {
-    background-color: #71756c;
+    background-color: #766779;
     border-radius: 12px;
     height: fit-content;
     padding: 20px;
-    width: 100%;
+    width: 200%;
 }
 
 .movie-title {
@@ -19,7 +19,7 @@
 }
 
 .poster {
-    width: 75%;
+    width: 100%;
 }
 
 .poster img {
@@ -51,6 +51,7 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
 
     color: white;
     font-size: 14px;
