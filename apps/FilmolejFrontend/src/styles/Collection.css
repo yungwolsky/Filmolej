@@ -1,3 +1,24 @@
+input {
+    max-width: 100px;
+    width: 10vw;
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 100px;
+    margin-bottom: 7px;
+}
+
+button {
+    max-width: 85px;
+    width: 10vw;
+    background-color: #905EAA;
+    border: none;
+    border-radius: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
 .page h2 {
     font-size: 35px;
     color: white;
@@ -24,7 +45,8 @@
 .movie-card p {
     text-align: center;
     margin-top: 8px;
-    font-size: 14px;
+    font-size: 16px;
+    color: rgb(229, 200, 230);
 }
 
 .poster {
