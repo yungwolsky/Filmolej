@@ -25,7 +25,7 @@ function GetMovieCollection() {
         <>
             <title>Collection</title>
             <div className="page">
-                <h2>Your Movies</h2>
+                <h2>Your Movie Collection</h2>
 
                 {movies.length === 0 ? (
                     <p>No movies found</p>
