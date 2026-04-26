@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMovie, getMovieCollection } from "../api/movie";
+import { getMovie } from "../api/movie";
 import { useNavigate, useParams } from "react-router-dom"; 
 import "../styles/Global.css";
 import "../styles/Movie.css";
