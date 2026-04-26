@@ -22,14 +22,12 @@ function Login(){
             console.log("Logged in:", data);
             navigate("/movieCollection");
         } catch (err) {
-            console.log(err);
-            
             const message =
                 err.response?.data?.message ||
                 err.response?.data ||
                 "Login failed";
 
-            console.log(message);
+            setError(message)
         }
     };
 
@@ -58,8 +56,10 @@ function Login(){
 
                     <br />
 
-                    <Link className="link" to="/register">Doesn't have an account?</Link>
-                    <button className="button" type="submit">Log In</button>
+                    <div className="buttons-container">
+                        <Link className="link" to="/register">Don't have an account?</Link>
+                        <button className="button" type="submit">Log In</button>
+                    </div>
                 </form>
             </div>
         </div>
