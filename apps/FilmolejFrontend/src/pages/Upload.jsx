@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { upload, uploadInChunks } from "../api/movie";
+import { uploadInChunks } from "../api/movie";
 import "../styles/Global.css"
 import "../styles/Upload.css"
 
@@ -17,27 +17,30 @@ function Upload(){
     };
 
     return (
-        <div className="page-center">
-            <div className="formBox">
-                <h2>Upload a movie</h2>
-                <input 
-                    type="text" 
-                    placeholder="Title"
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+        <>
+            <title>Upload</title>
+            <div className="page-center">
+                <div className="formBox">
+                    <h2>Upload a movie</h2>
+                    <input 
+                        type="text" 
+                        placeholder="Title"
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
 
-                <input 
-                    type="file" 
-                    onChange={(e) => setFile(e.target.files[0])}
-                />
+                    <input 
+                        type="file" 
+                        onChange={(e) => setFile(e.target.files[0])}
+                    />
 
-                <div className="button-container">
-                    <button className="button" onClick={handleUpload}>
-                        Upload
-                    </button>
+                    <div className="button-container">
+                        <button className="button" onClick={handleUpload}>
+                            Upload
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

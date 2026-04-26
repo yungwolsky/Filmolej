@@ -32,44 +32,47 @@ function Register(){
     }
 
     return (
-        <div className="page-center">
-            <div className="loginBox">
-                <h2>Register</h2>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+        <>
+            <title>Register</title>
+            <div className="page-center">
+                <div className="loginBox">
+                    <h2>Register</h2>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-                <form onSubmit={handleRegister}>
-                    <input 
-                        type="username" 
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                    <form onSubmit={handleRegister}>
+                        <input 
+                            type="username" 
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
 
-                    <br />
+                        <br />
 
-                    <input 
-                        type="email" 
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                        <input 
+                            type="email" 
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                    <br />
+                        <br />
 
-                    <input 
-                        type="password" 
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                    <br />
-              
-                    <Link className="link" to="/login">Already have an account?</Link>
-                    <button className="button" type="submit">Register</button>
-                </form>
+                        <br />
+                
+                        <Link className="link" to="/login">Already have an account?</Link>
+                        <button className="button" type="submit">Register</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

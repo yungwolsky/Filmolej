@@ -5,9 +5,12 @@ function MoviePage() {
     const { id } = useParams();
 
     return (
-        <div>
-            <VideoPlayer movieId={id}/>
-        </div>
+        <>
+            <title>Player</title>
+            <div>
+                <VideoPlayer movieId={id}/>
+            </div>
+        </>
     );
 }
 

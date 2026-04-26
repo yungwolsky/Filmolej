@@ -22,27 +22,30 @@ function GetMovieCollection() {
     }, []);
 
     return (
-        <div className="page">
-            <h2>Your Movies</h2>
+        <>
+            <title>Collection</title>
+            <div className="page">
+                <h2>Your Movies</h2>
 
-            {movies.length === 0 ? (
-                <p>No movies found</p>
-            ) : (
-                <div className="movie-grid">
-                    {movies.map((movie) => (
-                        <div 
-                            className="movie-card" 
-                            key={movie.id}
-                            onClick={() => navigate(`/movie/${movie.id}`)}>
-                            <div className="poster">
-                                <img src={movie.posterUrl} alt={movie.title}></img>
+                {movies.length === 0 ? (
+                    <p>No movies found</p>
+                ) : (
+                    <div className="movie-grid">
+                        {movies.map((movie) => (
+                            <div 
+                                className="movie-card" 
+                                key={movie.id}
+                                onClick={() => navigate(`/movie/${movie.id}`)}>
+                                <div className="poster">
+                                    <img src={movie.posterUrl} alt={movie.title}></img>
+                                </div>
+                                <p>{movie.title}</p>
                             </div>
-                            <p>{movie.title}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 
